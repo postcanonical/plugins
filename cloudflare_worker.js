@@ -189,44 +189,6 @@ export default {
         });
       }
 
-      if(
-            enc !== "enc2t"
-      ) {
-        let found = api.match(/^https?:\/\/([^\/?#]*)/);
-        if (found &&
-            [
-              "filmixapp.cyou",
-              "filmixapp.vip",
-              "filmix.my",
-              "portal.lumex.host",
-              "p.lumex.space",
-              "api.lumex.space",
-              "api.namy.ws",
-              "api.variyt.ws",
-              "api.zenithjs.ws",
-              "api.ortified.ws",
-              "api.kinogram.best",
-              "1fanserials.ru",
-              "1fanserials.net",
-              "1fanserials.fun",
-              "1fanserials.com",
-              "1fanserials.online",
-              "fanserial.me",
-              "lomont.site",
-              "rezka.ag",
-              "kvk.zone",
-              "vibix.org"
-            ].indexOf(found[1]) !== -1
-        ) {
-          let error = "Malformed URL";
-          return new Response(error + ": " + api, {
-            ...corsHeaders,
-            status: 404,
-            statusText: error,
-          });
-        }
-      }
-
       const apiUrl = new URL(api);
       let apiBase = apiUrl.href.substring(0, apiUrl.href.lastIndexOf("/") + 1);
 
