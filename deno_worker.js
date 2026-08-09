@@ -45,6 +45,7 @@ async function handle(request, connInfo) {
       if (!real_ip) real_ip = request.headers.get("cf-connecting-ip");
       if (!real_ip) real_ip = request.headers.get("X-Real-IP");
       if (!real_ip) real_ip = connInfo && connInfo.remoteAddr && connInfo.remoteAddr.hostname || "";
+      if (real_ip.startsWith("::ffff:") && real_ip.indexOf(".") !== -1) real_ip = real_ip.substring(7);
 
       if (api === "jsonip") {
           return new Response(JSON.stringify({ip: real_ip}), {
